@@ -1,0 +1,18 @@
+/**
+ * Created by jovinbm on 12/28/14.
+ */
+body {
+    padding-bottom: 140px;
+}
+
+.displayName {
+    color: cyan;
+}
+
+.jumbotron {
+    background-image: url(../imgs/widener1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}

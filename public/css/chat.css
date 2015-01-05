@@ -1,0 +1,42 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    padding-bottom: 140px;
+}
+
+
+/***************** questions feed *************************/
+.senderName {
+    font-weight: bold;
+    color: #0b97c4;
+}
+
+.questionTime {
+    color: darkgray;
+}
+
+/*bottom ask field*/
+.navbar-fixed-bottom{
+    z-index: 4;
+}
+
+/*wrapping text to one line*/
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+/******************* end of questions field *******************/
+
+/***************** top voted column *************************/
+/***************** end of top voted column *************************/
+
+/***************** online users column *************************/
+
+.fa-user {
+    color: #0b97c4;
+}
+
+/***************** end of online users column *************************/
