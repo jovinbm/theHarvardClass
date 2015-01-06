@@ -1,7 +1,3 @@
-/**
- * Created by jovinbm on 12/25/14.
- */
-//import modules
 var Question = require("../database/questions/question_model.js");
 var HarvardUser = require("../database/harvardUsers/harvard_user_model.js");
 var basic = require('../functions/basic.js');

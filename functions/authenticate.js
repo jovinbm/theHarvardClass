@@ -1,9 +1,4 @@
-/**
- * Created by jovinbm on 1/4/15.
- */
-
 /*Define authentication functions*/
-
 module.exports = {
 
     //authenticates requests
