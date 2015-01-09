@@ -1,3 +1,8 @@
+/**
+ * Created by jovinbm on 1/4/15.
+ */
+/*Defines basic simple functions*/
+
 module.exports = {
 
     // this function just prints on the console

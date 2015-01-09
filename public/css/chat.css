@@ -6,7 +6,6 @@ body {
     padding-bottom: 140px;
 }
 
-
 /***************** questions feed *************************/
 .senderName {
     font-weight: bold;
@@ -18,7 +17,7 @@ body {
 }
 
 /*bottom ask field*/
-.navbar-fixed-bottom{
+.navbar-fixed-bottom {
     z-index: 4;
 }
 

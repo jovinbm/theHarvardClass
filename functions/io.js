@@ -13,7 +13,7 @@ module.exports = {
     emitToOne: function (socketRoom, io, serverEvent, content, success) {
         basic.consoleLogger("io.emitToOne: Function 'emitToOne' called");
         io.sockets.in(socketRoom).emit(serverEvent, content);
-        if(success){
+        if (success) {
             success();
         }
     },
@@ -23,7 +23,7 @@ module.exports = {
     emitToAll: function (io, serverEvent, content, success) {
         basic.consoleLogger("io.emitToAll: Function 'emitToAll' called");
         io.emit(serverEvent, content);
-        if(success){
+        if (success) {
             success();
         }
     }

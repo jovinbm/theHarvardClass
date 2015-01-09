@@ -2,7 +2,7 @@
  * Created by jovinbm on 1/4/15.
  */
 /* form validation plugin */
-$.fn.goValidate = function() {
+$.fn.goValidate = function () {
     var $form = this,
         $inputs = $form.find('input:text');
 
@@ -20,7 +20,7 @@ $.fn.goValidate = function() {
             regex: /^[2-9]\d{2}-\d{3}-\d{4}$/,
         }
     };
-    var validate = function(klass, value) {
+    var validate = function (klass, value) {
         var isValid = true,
             error = '';
 
@@ -29,7 +29,7 @@ $.fn.goValidate = function() {
             isValid = false;
         } else {
             klass = klass.split(/\s/);
-            $.each(klass, function(i, k){
+            $.each(klass, function (i, k) {
                 if (validators[k]) {
                     if (value && !validators[k].regex.test(value)) {
                         isValid = false;
@@ -43,7 +43,7 @@ $.fn.goValidate = function() {
             error: error
         }
     };
-    var showError = function($input) {
+    var showError = function ($input) {
         var klass = $input.attr('class'),
             value = $input.val(),
             test = validate(klass, value);
@@ -54,7 +54,7 @@ $.fn.goValidate = function() {
         if (!test.isValid) {
             $input.addClass('invalid');
 
-            if(typeof $input.data("shown") == "undefined" || $input.data("shown") == false){
+            if (typeof $input.data("shown") == "undefined" || $input.data("shown") == false) {
                 $input.popover('show');
             }
 
@@ -64,21 +64,21 @@ $.fn.goValidate = function() {
         }
     };
 
-    $inputs.keyup(function() {
+    $inputs.keyup(function () {
         showError($(this));
     });
 
     $inputs.on('shown.bs.popover', function () {
-        $(this).data("shown",true);
+        $(this).data("shown", true);
     });
 
     $inputs.on('hidden.bs.popover', function () {
-        $(this).data("shown",false);
+        $(this).data("shown", false);
     });
 
-    $form.submit(function(e) {
+    $form.submit(function (e) {
 
-        $inputs.each(function() { /* test each input */
+        $inputs.each(function () { /* test each input */
             if ($(this).is('.required') || $(this).hasClass('invalid')) {
                 showError($(this));
             }
