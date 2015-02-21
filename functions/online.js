@@ -1,38 +1,64 @@
 /**
  * Created by jovinbm on 12/25/14.
  */
-var Question = require("../database/questions/question_model.js");
 var basic = require('../functions/basic.js');
+var consoleLogger = require('../functions/basic.js').consoleLogger;
+var ioJs = require('../functions/io.js');
+var usersOnline = {};
+//to help with indexing socketIds. This links a socket id to a specific room
+var socketIdIndex = {};
+
+/*usersOnline looks like this
+ usersOnline = {
+ "socketRoom": {
+ "socketId" : [Array of all socket Ids],
+ customUsername: string
+ }
+ and so on
+ }*/
 
 module.exports = {
 
-    //this function keeps track of an array that contains names of all online users
-    addToUsersOnline: function (onlineObject, r_username) {
-        basic.consoleLogger("f.addOnline: Function 'addOnline' called with username " + r_username);
-        var date = new Date();
-        var microSeconds = date.getTime();
-
-        var index = basic.indexArrayObject(onlineObject, "customUsername", r_username);
-        if (index != -1) {
-            //means user is there in the array with 'index' = index. so just update time
-            onlineObject[index].time = microSeconds;
+    addUser: function (room, userObject, success) {
+        var user = usersOnline[room];
+        if (!user) {
+            usersOnline[room] = userObject;
         } else {
-            //index == -1 so user is not there. Add the user
-            var user = {
-                "customUsername": r_username,
-                "time": microSeconds
-            };
-            onlineObject.push(user);
+            usersOnline[room].socketId = usersOnline[room].socketId.concat(userObject.socketId);
+        }
+        //add them to the socketId index for faster searching later
+        socketIdIndex[userObject.socketId[0]] = room;
+        ioJs.emitToAll("usersOnline", usersOnline, success);
+    },
+
+    removeUser: function (socketId, socketRoom, success) {
+        if (socketId) {
+            //get key from socketId Index
+            var key = socketIdIndex[socketId];
+            if (usersOnline[key]) {
+                if (usersOnline[key].socketId.length < 2) {
+                    delete usersOnline[key];
+                    //emit the current usersOnline object
+                    ioJs.emitToAll("usersOnline", usersOnline);
+                } else {
+                    var idArray = usersOnline[key].socketId;
+                    usersOnline[key].socketId.splice(idArray.indexOf(socketId), 1);
+                }
+            }
+        } else if (socketRoom) {
+            if (usersOnline[socketRoom]) {
+                delete usersOnline[socketRoom];
+                //emit the current usersOnline object
+                ioJs.emitToAll("usersOnline", usersOnline);
+            }
+        }
+
+        if (success) {
+            success();
         }
     },
 
-    //this function removes a person who either logged out or connection closed from the online object
-    removeFromUsersOnline: function (onlineObject, username) {
-        basic.consoleLogger("f.removeOnline: Function 'removeOnline' called with username " + username);
-        var index = onlineObject.map(function (user) {
-            return user.customUsername;
-        }).indexOf(username);
-        onlineObject.splice(index, 1);
+    getUsersOnline: function () {
+        return usersOnline;
     }
-
 };

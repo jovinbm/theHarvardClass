@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html ng-app="qaApp" ng-controller="HeadCtrl">
+<head>
 
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
     <meta name="description" content="Harvard Website to ask questions in class"/>
     <meta name="author" content="Jovin Mwilanga"/>
-
-    <title>HarvardClass</title>
 
     <!--google analytics-->
     <script>
@@ -24,136 +23,80 @@
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-58209445-1', 'auto');
-        ga('send', 'pageview');
+        //        ga('send', 'pageview');
 
     </script>
 
-    <!-- loads bootstrap.css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- loads bootstrap css -->
+    <link rel="stylesheet" href="/public/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="/public/css/bootstrap/css/bootstrap-theme.min.css">
+
+    <!--animate.css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css"/>
 
     <!--loads font awesome-->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <!--angular loading bar css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.6.0/loading-bar.min.css"/>
+
+    <!--normalize.css-->
+    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"/>
+
+    <!--toastr-->
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.min.css">
 
     <!-- loads custom css file -->
-    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="/public/css/chat.css">
+
+    <title ng-cloak>{{title}}</title>
 
 </head>
-<body>
-
-
+<body ng-controller="MainController">
+<toast></toast>
 <!--start of nav-->
-
-<!--the class static-top sticks nav bar at top, and fixed-top just fixes it at top-->
-<div class="navbar navbar-inverse navbar-static-top">
-
-    <!--'container' div makes sure our content is well centered on the screen-->
-    <div class="container">
-        <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> ClassName</a>
-
-        <!--button to target the navbar-right which will appear on collapse of navbar items-->
-        <button class='navbar-toggle' data-toggle="collapse" data-target=".navHeaderCollapse">
-
-            <!--create the breadcrumb-->
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-
-        </button>
-
-        <!--this navbar will be collapsed on mobile-->
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-right">
-                <!--the user profile dropdown-->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        ID: <%= customUsername %> <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" class="logoutCustomChat">Logout from Session</a></li>
-                        <li><a href="#" class="logoutHarvardChat">Logout from Harvard</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-        </div>
-    </div>
+<div class="ng-cloak">
+    <div top-qa-nav></div>
 </div>
 <!--end of nav-->
 
-<!--middle container for news-feed, top voted questions and online users-->
+<!--middle container-->
 <div class="container">
+    <div ng-switch on="tab">
 
-    <div class="row">
+        <div class="row">
+            <div ng-view></div>
 
-        <!--column for newsfeed-->
-        <div class="col-lg-7 col-md-8 col-sm-8 col-xs-12">
-            <h5>
-                <span>
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                    Question Feed:
-                </span>
-                <small>
-                    <span class="questionFeedDate">Date</span></small>
-            </h5>
-            <table class="table table-condensed table-striped question_feed">
-
-            </table>
-        </div>
-        <!--end of newsfeed-->
-
-        <!--start of top voted questions and online column-->
-        <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">
-
-            <div class="row">
-
-                <!--start of top voted questions-->
-                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-9">
-                    <h5>Top Voted Questions</h5>
-                    <table class="table table-condensed table-striped topQuestions">
-
-                    </table>
-                </div>
-                <!--end of top voted questions-->
-
-                <!--start of online users-->
-                <div class="col-lg-3 col-md-5 col-sm-5 col-xs-3" style="text-align: center">
-
-                    <h5>Online</h5>
-                    <table class="table table-condensed table-striped onlineUsers">
-
-                    </table>
-                </div>
-
+            <!--start of trending summary-->
+            <div ng-switch-when="home" class="ng-cloak">
+                <div trending-summary></div>
             </div>
+            <!--end of trending summary-->
 
+            <!--start of online users-->
+            <div class="ng-cloak">
+                <div online-feed></div>
+            </div>
+            <!--end of online users column-->
         </div>
-        <!--end of online users column-->
-
 
     </div>
-    <!--end of row-->
-
 </div>
 <!--end of mid container-->
 
-<!--start of question input field-->
-<!--<div class="container navbar-fixed-bottom">-->
-<!--<div class="panel-footer" id="footerconst">-->
-<div class='navbar navbar-default navbar-fixed-bottom'>
-    <div class="container">
 
-        <textarea class="form-control" id="qfield" placeholder="Type your question" rows="3"></textarea>
-
-        <div class="pull-right">
-            <button class="navbar-btn btn btn-align btn-info">clarify?</button>
-            <button class="navbar-btn btn btn-align btn-info">give an example?</button>
-            <button class="navbar-btn btn btn-warning" type="button" id="ask">ASK
-            </button>
-        </div>
-    </div>
+<!--start of bottom nav-->
+<div class="ng-cloak">
+    <div bottom-qa-nav></div>
 </div>
-<!--end of question input field-->
+<!--end of bottom nav-->
+
+
+<!--start of question input modal-->
+<div question-modal></div>
+<!--end of question input modal-->
 
 
 <!-- JAVASCRIPT -->
@@ -162,21 +105,58 @@
 <script type="text/javascript" src="socket.io/socket.io.js"></script>
 
 <!-- jquery -->
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- Boostrap.js -->
+<!--AngularJS SCRIPTS-->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.9/angular-route.min.js"></script>
 <script type="text/javascript"
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular-animate.min.js"></script>
+<script type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular-sanitize.min.js"></script>
+<script type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js"></script>
+
+<!--angular analytics-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/angulartics/0.17.2/angulartics.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angulartics/0.17.2/angulartics-ga.min.js"></script>
+
+
+<!-- Bootstrap.js -->
+<script type="text/javascript"
+        src="/public/css/bootstrap/js/bootstrap.min.js"></script>
+
+<!--angular loading bar js-->
+<script type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.6.0/loading-bar.min.js"></script>
 
 <!-- loads respond.js: enables responsive web designs in browsers that don't support CSS3 Media Queries - in particular, Internet Explorer 8 and under. -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 
-<!-- loads jquery cookie plugin -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-<!-- customlogin javascript file: should be loaded after jquery-->
-<script type="text/javascript" src="js/chat.js"></script>
+<!--text angular-->
+<script src='//cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular-sanitize.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.2/textAngular.min.js'></script>
+
+<!--toastr js-->
+<script src="/bower_components/toastr/toastr.min.js"></script>
+
+<script type="text/javascript" src="/public/js/chat.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/mainApp.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/filters.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/directives.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/services/globals.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/services/questionFactory.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/services/reference.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/services/socketService.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/services/commentFactory.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/services/mainFactory.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/controllers/mainCtrl.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/controllers/logInOutCtrl.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/controllers/onlineCtrl.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/controllers/cmtCtrl.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/controllers/qCtrl.js"></script>
+<script type="text/javascript" src="/public/angular_assets/qaApp/controllers/trendingCtrl.js"></script>
+
 </body>
 </html>

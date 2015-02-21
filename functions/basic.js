@@ -16,7 +16,22 @@ module.exports = {
             if (myArray[i][property] === value) return i;
         }
         return -1;
+    },
+
+
+    searchArrayIfExists: function (name, theArray, success) {
+        return (theArray.indexOf(name) > -1)
+    },
+
+
+    filterArray: function(theArray, regexExp, success){
+        var temp = [];
+        theArray.forEach(function (elem) {
+            if(regexExp.test(elem)){
+                temp.push(elem);
+            }
+        });
+
+        success(temp)
     }
-
-
 };

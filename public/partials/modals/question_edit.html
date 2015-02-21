@@ -1,0 +1,69 @@
+<li>
+    <div class="edit-input-div animated fadeIn">
+        <form name="editForm"
+              id="edit_input"
+              novalidate="novalidate">
+            <div class="form-group"
+                 ng-class="{
+                         'has-error': (editForm.qheading.$error.required && editForm.qheading.$dirty) ||
+                         (editForm.qheading.$error.minlength && editForm.qheading.$dirty) ||
+                         editForm.qheading.$error.maxlength,
+                         'has-success': !editForm.qheading.$invalid
+                         }">
+                <label for="heading">Heading</label>
+                <input class="form-control input-sm"
+                       id="heading"
+                       name="qheading"
+                       type="text"
+                       ng-model="theEditedHeading"
+                       required
+                       ng-minlength="10"
+                       ng-maxlength="100"/>
+
+                <p ng-show="editForm.qheading.$error.required && askForm.qheading.$dirty"
+                   class="form-error-notice">This field is
+                    required
+                </p>
+
+                <p ng-show="editForm.qheading.$error.minlength && askForm.qheading.$dirty"
+                   class="form-error-notice">At least 10
+                    characters
+                </p>
+
+                <p ng-show="editForm.qheading.$error.maxlength"
+                   class="form-error-notice">At most 100 characters
+                </p>
+            </div>
+            <div class="form-group"
+                 ng-class="{
+                 'has-error': editForm.qQuestionEdit.$error.required,
+                 'has-success': !editForm.qQuestionEdit.$invalid
+                 }">
+                <div text-angular
+                     ta-toolbar="[['pre','h6','bold','italics','underline','insertLink','quote','ul','ol','undo','redo','indent','outdent']]"
+                     name="qQuestionEdit"
+                     ng-model="theEditedQuestion"
+                     required>
+                </div>
+                <p ng-show="editForm.qQuestionEdit.$error.required && editForm.qQuestionEdit.$dirty"
+                   class="form-error-notice">This field is required
+                </p>
+            </div>
+
+            <div class="form-group clearfix">
+                <button type="button"
+                        class="btn btn-primary btn-xs pull-right"
+                        ng-click="saveEditedPost(theEditedHeading, theEditedQuestion)"
+                        ng-disabled="editForm.$invalid">
+                    <i class="fa fa-paper-plane"></i> Save
+                </button>
+                <button type="button"
+                        class="btn btn-default btn-xs pull-right"
+                        ng-click="changeViewMode('full')">Dismiss
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</li>

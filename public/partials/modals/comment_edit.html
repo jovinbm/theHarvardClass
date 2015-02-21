@@ -1,0 +1,39 @@
+<div class="edit-input-div animated fadeIn"
+     ng-init="thisComment=getCommentToEdit(eachComment.commentIndex);">
+    <form name="comment_editForm"
+          id="comment_edit_input"
+          novalidate="novalidate">
+        <div class="form-group"
+             ng-class="{
+                            'has-error': comment_editForm.comment_edit.$error.required,
+                            'has-success': !comment_editForm.comment_edit.$invalid
+                            }">
+            <div text-angular
+                 ta-toolbar="[['pre','h6','bold','italics','underline','insertLink','quote','ul','ol','undo','redo','indent','outdent']]"
+                 name="comment_edit"
+                 ng-model="thisComment"
+                 required
+                 placeholder="Your comment here">
+            </div>
+            <p ng-show="comment_editForm.comment_edit.$error.required"
+               class="form-error-notice">This field is required
+            </p>
+        </div>
+        <br/>
+
+        <div class="form-group clearfix">
+            <button type="button"
+                    class="btn btn-primary btn-xs pull-right"
+                    ng-click="saveEditedComment(eachComment.uniqueId, eachComment.commentIndex, thisComment)"
+                    ng-disabled="comment_editForm.$invalid">
+                <i class="fa fa-paper-plane"></i> Save
+            </button>
+            <button type="button"
+                    class="btn btn-default btn-xs pull-right"
+                    ng-click="cmntsReference[eachComment.commentIndex].viewMode = 'viewMode';
+                    changeEditing();">Dismiss
+            </button>
+        </div>
+    </form>
+
+</div>

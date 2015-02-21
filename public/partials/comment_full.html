@@ -1,0 +1,43 @@
+<ul class="list-unstyled">
+    <li class="list-unstyled comment-full-li clearfix ng-cloak"
+        ng-repeat="eachComment in comments"
+        ng-if="cmntsReference[eachComment.commentIndex]"
+        ng-class="cmntsReference[eachComment.commentIndex].commentClass">
+
+        <div ng-if="cmntsReference[eachComment.commentIndex].viewMode == 'viewMode'">
+            <div class="comment-p-div">
+                <p ta-bind
+                   ng-model="eachComment.comment"
+                   class="text-outputs comment-p animated fadeIn ng-cloak">
+                </p>
+            </div>
+            <small class="comment-name ng-cloak">{{eachComment.senderName}}</small>
+
+            <small class="commentTime ng-cloak">{{cmntsReference[eachComment.commentIndex].commentTime}}</small>
+
+            <div class="pull-right">
+                <a ng-click="cmntsReference[eachComment.commentIndex].viewMode = 'editMode'"
+                   type="button"
+                   class="btn btn-default btn-xs conv"
+                   ng-show="eachComment.senderCuid == uniqueCuid && !is_editing">
+                    <i class="fa fa-pencil-square-o"></i>
+                </a>
+                <a type="button"
+                   ng-class="cmntsReference[eachComment.commentIndex].buttonClass"
+                   ng-if="cmntsReference[eachComment.commentIndex].ifPromoted == false"
+                   ng-click="promote(currentQuestion, eachComment.commentIndex, eachComment.uniqueId, $event)">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a type="button"
+                   ng-class="cmntsReference[eachComment.commentIndex].buttonClass"
+                   ng-if="cmntsReference[eachComment.commentIndex].ifPromoted == true"
+                   ng-click="removePromote(currentQuestion, eachComment.commentIndex, eachComment.uniqueId, $event)">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+        <div ng-if="cmntsReference[eachComment.commentIndex].viewMode == 'editMode'">
+            <div comment-edit></div>
+        </div>
+    </li>
+</ul>

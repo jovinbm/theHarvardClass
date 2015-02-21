@@ -1,0 +1,144 @@
+<!--start of desktop nav view-->
+<div class="navbar navbar-default navbar-fixed-top hidden-xs"
+     id="desk-nav-header"
+     role="navigation"
+     ng-controller="logInOutCtrl">
+    <div class="container">
+        <a href="/"
+           class="navbar-brand">
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            HarvardClass
+        </a>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-class="{'active': tab == 'home' && qColumnState == 'qFeed'}">
+                <a ng-href="#/1"
+                   ng-click="changeTab('home')"
+                   class="nav-tab-a">Home
+                </a>
+            </li>
+            <li ng-class="{'active': tab == 'trending'}">
+                <a ng-href="#/trending/full/"
+                   ng-click="changeTab('trending')"
+                   class="nav-tab-a">Trending
+                </a>
+            </li>
+            <li>
+                <a href="#"
+                   target="_self"
+                   class="nav-tab-a">Users
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#"
+                   target="_self"
+                   class="dropdown-toggle" data-toggle="dropdown">
+                    {{customUsername}} <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <!--<li>-->
+                    <!--<a href="#"-->
+                    <!--target="_self"-->
+                    <!--class="logoutCustomChat"-->
+                    <!--ng-click="logoutCustomChat()">Logout from Session-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a href="#"
+                           target="_self"
+                           class="logoutHarvardChat"
+                           ng-click="logoutHarvardChat()">Logout
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <a type="button"
+           class="btn btn-primary btn-lg navbar-btn pull-right"
+           href="#myModal"
+           target="_self"
+           role="button"
+           data-toggle="modal">
+            <i class="fa fa-pencil"></i> New Question
+        </a>
+    </div>
+</div>
+<!--end of desktop nav view-->
+
+
+<!--start of mobile nav view-->
+<div ng-controller="logInOutCtrl">
+    <div class="navbar navbar-default navbar-fixed-top visible-xs"
+         id="mobile-nav-header"
+         role="navigation">
+
+        <div class="navbar-header"
+             ng-if="tab == 'home' && qColumnState == 'qFeed'">
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                HarvardClass
+            </a>
+        </div>
+
+        <div class="navbar-header"
+             ng-if="(tab == 'home' && qColumnState == 'qFull') || tab == 'trending'">
+            <a ng-href="#/1"
+               ng-click="changeTab('home'); back();"
+               class="navbar-brand"><i class="fa fa-chevron-left"></i> Back
+            </a>
+        </div>
+
+        <span class="hidden-sm hidden-md hidden-lg">
+            <a type="button"
+               class="navbar-btn btn btn-primary btn-xs pull-right"
+               href="#myModal"
+               target="_self"
+               role="button"
+               data-toggle="modal">
+                <i class="fa fa-pencil"></i> New Question
+            </a>
+        </span>
+
+    </div>
+
+    <ul class="nav nav-tabs visible-xs">
+        <li ng-class="{'active': tab == 'home' && qColumnState == 'qFeed'}"
+            class="col-xs-4">
+            <a ng-href="#/1"
+               ng-click="changeTab('home')"
+               class="nav-tab-a"><i class="fa fa-home"></i> Home
+            </a>
+
+        </li>
+        <li ng-class="{'active': tab == 'trending'}"
+            class="col-xs-4">
+            <a ng-href="#/trending/full/"
+               ng-click="changeTab('trending')"
+               class="nav-tab-a"><i class="fa fa-line-chart"></i> Trending
+            </a>
+        </li>
+        <li class="col-xs-4">
+            <a href="#"
+               target="_self"
+               class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i> {{customUsername}} <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <!--<li>-->
+                <!--<a href="#"-->
+                <!--target="_self"-->
+                <!--class="logoutCustomChat"-->
+                <!--ng-click="logoutCustomChat()">Logout-->
+                <!--</a>-->
+                <!--</li>-->
+                <li>
+                    <a href="#"
+                       target="_self"
+                       class="logoutHarvardChat"
+                       ng-click="logoutHarvardChat()">Logout
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!--end of mobile nav view-->

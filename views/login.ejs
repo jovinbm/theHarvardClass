@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Harvard Website to ask questions in class"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Harvard Question and Answer Website"/>
     <meta name="author" content="Jovin Mwilanga"/>
-    <title>HarvardClass - Login</title>
+    <link rel="author" href="https://plus.google.com/+JovinMwilanga"/>
 
     <!--google analytics-->
     <script>
@@ -26,54 +27,60 @@
 
     </script>
 
-    <!-- loads bootstrap.css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- loads bootstrap css -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
     <!--loads font awesome-->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
-    <!-- loads stylesheet for form bootstrap validator plugin -->
+    <!--normalize.css-->
+    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css"/>
+
+    <!-- bootstrap validator css -->
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
 
     <!-- loads custom css file -->
-    <link rel="stylesheet" href="css/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/login.css">
 
+
+    <title>HarvardClass - Login</title>
 </head>
 
 <body>
 
 <!--start of nav-->
-
-<!--the class static-top sticks nav bar at top, and fixed-top just fixes it at top-->
-<div class="navbar navbar-inverse navbar-static-top">
-
-    <!--'container' div makes sure our content is well centered on the screen-->
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> HarvardClass</a>
-
-        <!--button to target the navbar-right which will appear on collapse of navbar items-->
-        <button class='navbar-toggle' data-toggle="collapse" data-target=".navHeaderCollapse">
-
-            <!--create the breadcrumb-->
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-
-        </button>
+        <div class="navbar-header">
+            <!--button to target the navbar-right which will appear on collapse of navbar items-->
+            <button type="button" class='navbar-toggle collapsed' data-toggle="collapse"
+                    data-target=".navHeaderCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                HarvardClass
+            </a>
+        </div>
 
         <!--this navbar will be collapsed on mobile-->
         <div class="collapse navbar-collapse navHeaderCollapse">
-
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://canvas.harvard.edu/" target="_blank">Canvas</a></li>
                 <li><a href="https://my.harvard.edu" target="_blank">my.harvard.edu</a></li>
-                <li id='signInName'><a href="#">About</a></li>
+                <li><a href="https://canvas.harvard.edu/" target="_blank">Canvas</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/loginNew.html">Help</a></li>
             </ul>
         </div>
     </div>
 </div>
 <!--end of nav-->
+
 
 <!--start of jumbotron-->
 <div class='container'>
@@ -95,8 +102,6 @@
 <!--end of jumbotron-->
 
 <!--start of login with Harvard ID-->
-
-<!--to hide use:  style="display: none"-->
 <div class="container text-center">
     <form action="/harvardId/login"
           method="post"
@@ -109,35 +114,12 @@
 </div>
 <!--end of login with Harvard ID-->
 
-<!--start of instructor login form-->
-<div class="container" style="display: none">
-    <form action="/instructorLogin" method="post" id="instructorLoginForm">
-        <div class="form-group">
-            <label for="email">Instructor's Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Please enter your Email Address">
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-default btn-block">Sign In</button>
-        </div>
-    </form>
-</div>
-<!--end of instructor login form-->
 
 <!--start of footer-->
 <div class='navbar navbar-default navbar-fixed-bottom'>
-    <!--'container div makes sure of correct alignment-->
     <div class="container">
-
-        <!--the class navbar-text makes sure that the text is correctly centerd in the navbar-->
-        <!--the class pull-left floats the buttons to the left-->
         <p class="navbar-text pull-left">
-            Site Built By Jovin Mwilanga:
+            <i class="fa fa-copyright"></i> 2015 jbm
             <a href="https://www.google.com/+JovinMwilanga" target="_blank">
                 <i class="fa fa-google-plus-square"></i>
             </a>
@@ -149,16 +131,13 @@
             </a>
         </p>
 
-        <!--the class navbar-btn styles the buttons for the nav-->
-        <!--the class pull-right floats the buttons to the right-->
         <div class="pull-right">
-            <a class="navbar-btn btn btn-warning btn-xs">Status: Development</a>
-            <a href="#myModal" role="button" class="btn btn-info btn-xs" data-toggle="modal">Shoot Me an Email</a>
+            <a class="navbar-btn btn btn-warning btn-xs hidden-xs">Status: Development</a>
+            <a href="#myModal" role="button" class="navbar-btn btn btn-info btn-xs" data-toggle="modal">Shoot Me an Email</a>
         </div>
     </div>
 </div>
 <!--end of footer-->
-
 
 <!--email modal-->
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -169,7 +148,7 @@
                 <h3 id="myModalLabel">I'd Love to Hear From You</h3>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal col-sm-12 emailForm" method="post" action="/sendEmail">
+                <form class="emailForm" method="post" action="/sendEmail">
                     <div class="form-group"><label>Name</label><input class="form-control required"
                                                                       placeholder="Your name" data-placement="top"
                                                                       data-trigger="manual"
@@ -186,13 +165,11 @@
                                                                         data-content="Must be a valid e-mail address (user@gmail.com)"
                                                                         type="text" name="email"></div>
                     <div class="form-group">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                         <button type="submit" class="btn btn-success pull-right">Send It!</button>
                         <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not
                             valid. </p></div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
         </div>
     </div>
@@ -201,31 +178,25 @@
 
 
 <!-- JAVASCRIPT -->
-
-<!-- socket.io javascript -->
-<script type="text/javascript" src="socket.io/socket.io.js"></script>
-
 <!-- jquery -->
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- Boostrap.js -->
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-<!-- loads respond.js: enables responsive web designs in browsers that don't support CSS3 Media Queries - in particular, Internet Explorer 8 and under. -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-
-<!-- loads jquery cookie plugin -->
+<!-- Bootstrap.js -->
 <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+        src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<!-- loads respondJS: enables responsive web designs in browsers that don't support CSS3 Media Queries - in particular, Internet Explorer 8 and under. -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 
 <!-- loads jquery for bootstrapvalidator plugin -->
 <script type="text/javascript"
         src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 
-<!-- customlogin javascript file: should be loaded after jquery-->
-<script type="text/javascript" src="js/login.js"></script>
+<!-- custom login javascript file: should be loaded after jquery-->
+<script type="text/javascript" src="/public/js/login.js"></script>
 
-<!--my custom javascript file with pluging-->
-<script type="text/javascript" src="js/custom_plugin"></script>
+<!--modal validator plugin-->
+<script type="text/javascript" src="/public/js/custom_plugin.js"></script>
+
 </body>
 </html>

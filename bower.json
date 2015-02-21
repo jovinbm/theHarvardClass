@@ -1,0 +1,32 @@
+{
+  "name": "HarvardClass",
+  "version": "1.0.2",
+  "homepage": "https://harvardclass.herokuapp.com",
+  "authors": [
+    "Jovin Mwilanga <jovinbeda@hotmail.com>"
+  ],
+  "description": "A question and answer website for Harvard University",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "harvard",
+    "class"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.2",
+    "toastr": "~2.1.0",
+    "bootstrap": "~3.3.2",
+    "angular-loading-bar": "~0.6.0",
+    "angulartics": "~0.17.2"
+  }
+}

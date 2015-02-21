@@ -2,6 +2,7 @@
  * Created by jovinbm on 12/28/14.
  */
 body {
+    padding-top: 70px;
     padding-bottom: 140px;
 }
 
@@ -10,7 +11,7 @@ body {
 }
 
 .jumbotron {
-    background-image: url(../imgs/widener1.jpg);
+    background-image: url(/public/imgs/widener1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     color: white;

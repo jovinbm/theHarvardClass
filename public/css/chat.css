@@ -1,41 +1,153 @@
-html {
-    font-size: 62.5%;
+/*angular js*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }
 
+/*defaults*/
 body {
-    padding-bottom: 140px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+    font-size: 12px;
 }
 
-/***************** questions feed *************************/
-.senderName {
+/*nav*/
+#mobile-nav-header {
+    height: 30px;
+    margin-bottom: 0;
+}
+
+ul > li.col-xs-4 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+ul > li.col-xs-4 > a {
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: 700;
+}
+
+#desk-nav-header {
+    height: 30px;
+    margin-bottom: 0;
+}
+
+#feed-search-form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-error-notice {
+    color: rgb(169, 68, 66);
     font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.btn {
+    font-size: 10px;
+}
+
+.btn.pull-right {
+    margin-right: 3px;
+}
+
+.conv {
+    width: 40px;
+}
+
+.questionTime, .commentTime, .by {
+    color: darkgray;
+    font-size: 10px;
+}
+
+.userName {
+    font-weight: bold;
+    color: #0b97c4;
+    font-size: 12px;
+}
+
+.edit-input-div {
+    padding-top: 10px;
+}
+
+div > div > div > li > div {
+    padding-top: 10px;
+}
+
+.comment-full-li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-name, .sender-name {
     color: #0b97c4;
 }
 
-.questionTime {
-    color: darkgray;
+.comment-p {
+    margin-bottom: 5px;
 }
 
-/*bottom ask field*/
-.navbar-fixed-bottom {
-    z-index: 4;
+/*p tags inside comments rich text*/
+.comment-p-div > p > p {
+    margin-bottom: 5px;
 }
 
-/*wrapping text to one line*/
-table {
-    table-layout: fixed;
+a:focus {
+    outline: 0;
+}
+
+.text-outputs {
     word-wrap: break-word;
 }
 
-/******************* end of questions field *******************/
-
-/***************** top voted column *************************/
-/***************** end of top voted column *************************/
-
-/***************** online users column *************************/
-
-.fa-user {
-    color: #0b97c4;
+/*
+questions feed
+*/
+.question-feed-li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
 }
 
-/***************** end of online users column *************************/
+.question-full-li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/*question input field/modal*/
+.ta-editor {
+    min-height: 200px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.question-modal-notice {
+    color: rgb(138, 109, 59);
+}
+
+/*comment input rich text editor*/
+.comment_input {
+    margin: 10px 0 40px 0;
+}
+
+/*disabling focus effects*/
+div > a.btn.btn-default.btn-lg.navbar-btn.pull-right:focus,
+body > div > div > div.navbar.navbar-default.navbar-fixed-top.visible-xs > ul > li.dropdown > a:focus,
+ul > li.dropdown.open > a:focus,
+ul > li > a:focus,
+div.collapse.navbar-collapse.navHeaderCollapse > a:focus,
+span.hidden-sm.hidden-md.hidden-lg > a:focus {
+    outline: none;
+}
+
+ul.nav.navbar-nav.pull-right.hidden-xs.bottom-nav-pills > li > a,
+#trending {
+    color: #0b97c4;
+}

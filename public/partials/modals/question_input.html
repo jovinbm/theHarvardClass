@@ -1,0 +1,85 @@
+<div id="myModal"
+     class="modal fade"
+     modal-question-input
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true"
+     ng-controller="AskController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header hidden-xs">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h5 id="myModalLabel">New question</h5>
+
+                <p class="question-modal-notice">Please ask questions, or make posts that contain useful information.
+                    Thank you</p>
+            </div>
+
+            <div class="modal-body">
+                <form name="askForm"
+                      id="question_input"
+                      novalidate="novalidate">
+                    <div class="form-group"
+                         ng-class="{
+                         'has-error': askForm.qheading.$error.required ||
+                         (askForm.qheading.$error.minlength && askForm.qheading.$dirty) ||
+                         askForm.qheading.$error.maxlength,
+                         'has-success': !askForm.qheading.$invalid
+                         }">
+                        <label for="heading" class="hidden-xs">Heading</label>
+                        <input class="form-control input-sm"
+                               id="heading"
+                               aria-describedby="headingStatus"
+                               name="qheading"
+                               placeholder="Brief heading (10 to 100 chars)"
+                               type="text"
+                               ng-model="theHeading"
+                               required
+                               ng-minlength="10"
+                               ng-maxlength="100"/>
+
+                        <p ng-show="askForm.qheading.$error.required && askForm.qheading.$dirty"
+                           class="form-error-notice">A heading is required</p>
+
+                        <p ng-show="askForm.qheading.$error.minlength && askForm.qheading.$dirty"
+                           class="form-error-notice">At least 10
+                            characters</p>
+
+                        <p ng-show="askForm.qheading.$error.maxlength"
+                           class="form-error-notice">At most 100 characters</p>
+                    </div>
+                    <div class="form-group"
+                         ng-class="{
+                         'has-error': askForm.qQuestion.$error.required,
+                         'has-success': !askForm.qQuestion.$invalid
+                         }">
+                        <div text-angular
+                             ta-toolbar="[['pre','h6','bold','italics','underline','insertLink','quote','ul','ol','undo','redo','indent','outdent']]"
+                             name="qQuestion"
+                             ng-model="theQuestion"
+                             required
+                             placeholder="Your question here">
+                        </div>
+                        <p ng-show="askForm.qQuestion.$error.required && askForm.qQuestion.$dirty"
+                           class="form-error-notice">This field is required</p>
+                    </div>
+
+                    <button class="btn" ng-click="dismiss()">Close</button>
+                    <button type="submit"
+                            class="btn btn-warning pull-right"
+                            ng-click="ask()"
+                            ng-disabled="askForm.$invalid"
+                            data-dismiss="modal">ASK
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

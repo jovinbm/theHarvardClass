@@ -1,0 +1,99 @@
+<div ng-controller="qFeedCtrl"
+     ng-class="columnClass"
+     class="animated fadeIn">
+    <h5 class="hidden-xs text-primary">
+        <span>
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            Question Feed
+        </span>
+    </h5>
+
+    <form id="feed-search-form">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" aria-describedby="search-addon">
+            <span class="input-group-addon" id="search-addon"><i class="fa fa-search"></i></span>
+        </div>
+    </form>
+
+    <div ng-if="alerts.newQuestionAlert.display == true">
+        <a ng-if="pagination.currentPage == 1">
+            <alert class="animated fadeIn"
+                   ng-model="alerts.newQuestionAlert"
+                   type="{{alerts.newQuestionAlert.type}}"
+                   ng-click="closeAlert('newQuestionAlert')">
+                {{alerts.newQuestionAlert.num}} new post(s) available. Click to show
+            </alert>
+        </a>
+        <a ng-if="pagination.currentPage != 1">
+            <alert class="animated fadeIn"
+                   ng-model="alerts.newQuestionAlert"
+                   type="{{alerts.newQuestionAlert.type}}"
+                   ng-click="showNew()">
+                {{alerts.newQuestionAlert.num}} new post(s) available. Click to show
+            </alert>
+        </a>
+    </div>
+
+    <ul class="list-unstyled animated fadeIn">
+        <li class="list-unstyled clearfix question-feed-li"
+            ng-repeat="eachQuestion in questions | limitTo : 10"
+            ng-class="questionReference[eachQuestion.questionIndex].questionClass">
+
+            <h4 class="text-outputs">
+                <a ng-href="#/fullQuestion/{{eachQuestion.questionIndex}}/">
+                    {{eachQuestion.heading}}
+                </a>
+                <small class="by">by</small>
+                <small class="by sender-name"> {{eachQuestion.senderName}}</small>
+                <small class="questionTime">on {{questionReference[eachQuestion.questionIndex].questionTime}}
+                </small>
+            </h4>
+
+            <div ta-bind ng-model="eachQuestion.question"
+                 class="text-outputs">
+            </div>
+
+            <div class="question-buttons clearfix">
+                <button type='button'
+                        class="pull-right"
+                        ng-if="questionReference[eachQuestion.questionIndex].upvoted == false"
+                        ng-class="questionReference[eachQuestion.questionIndex].buttonClass"
+                        ng-click="upVote(eachQuestion.questionIndex, $event)">
+
+                    <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>
+
+                </button>
+                <button type='button'
+                        class="pull-right"
+                        ng-if="questionReference[eachQuestion.questionIndex].upvoted == true"
+                        ng-class="questionReference[eachQuestion.questionIndex].buttonClass"
+                        ng-click="downVote(eachQuestion.questionIndex, $event)">
+
+                    <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>
+
+                </button>
+                <a ng-href="#/fullQuestion/{{eachQuestion.questionIndex}}/"
+                   type="button"
+                   class="btn btn-default btn-xs pull-right conv">
+                    <i class="fa fa-comments-o"></i>
+                </a>
+            </div>
+        </li>
+    </ul>
+
+    <div class="text-center">
+        <pagination total-items="totalNo"
+                    items-per-page="itemsPerPage"
+                    ng-model="pageNo"
+                    max-size="5"
+                    class="pagination-sm"
+                    boundary-links="true"
+                    previous-text="&lsaquo;"
+                    next-text="&rsaquo;"
+                    first-text="&laquo;"
+                    last-text="&raquo;"
+                    rotate="false"
+                    ng-change="navigate()">
+        </pagination>
+    </div>
+</div>
